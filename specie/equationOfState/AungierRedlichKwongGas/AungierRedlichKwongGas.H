@@ -91,17 +91,31 @@ class AungierRedlichKwongGas
         //- Critical Temperature [K]
         scalar Tc_;
 
-        //- Critical volume [m^3/kmol]
+        //- Critical volume [m^3/kg]
         scalar Vc_;
-
-        //- Critical compression factor [-]
-        scalar Zc_;
 
         //- Critical Pressure [Pa]
         scalar Pc_;
 
         //- Acentric factor [-]
         scalar omega_;
+
+        //- parameter b [m^3/kg]
+        scalar b_;
+
+        //- parameter b [m^3/kg]
+        scalar c_;
+
+        //- parameter alpha0 [?]
+        scalar alpha0_;
+
+        //- parameter n [-]
+        scalar n_;
+
+    // Private methods
+    inline Foam::scalar dpdV(scalar V, scalar T, scalar a) const;
+
+    inline Foam::scalar dpdT(scalar V) const;
 
 
 public:
@@ -114,7 +128,6 @@ public:
             const Specie& sp,
             const scalar& Tc,
             const scalar& Vc,
-            const scalar& Zc,
             const scalar& Pc,
             const scalar& omega
         );
@@ -158,7 +171,7 @@ public:
             //- Return enthalpy departure [J/kg]
             inline scalar H(const scalar p, const scalar T) const;
 
-            //- Return Cp departure [J/(kg K]
+            //- Return Cp departure [J/(kg K)]
             inline scalar Cp(scalar p, scalar T) const;
 
             //- Return entropy [J/(kg K)]
@@ -167,10 +180,10 @@ public:
             //- Return compressibility rho/p [s^2/m^2]
             inline scalar psi(scalar p, scalar T) const;
 
-            //- Return compression factor []
+            //- Return compression factor [-]
             inline scalar Z(scalar p, scalar T) const;
 
-            //- Return (Cp - Cv) [J/(kg K]
+            //- Return (Cp - Cv) [J/(kg K)]
             inline scalar CpMCv(scalar p, scalar T) const;
 
 

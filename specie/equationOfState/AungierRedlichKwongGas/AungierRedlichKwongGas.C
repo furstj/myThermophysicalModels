@@ -37,11 +37,13 @@ Foam::AungierRedlichKwongGas<Specie>::AungierRedlichKwongGas
     Specie(dict),
     Tc_(readScalar(dict.subDict("equationOfState").lookup("Tc"))),
     Vc_(readScalar(dict.subDict("equationOfState").lookup("Vc"))),
-    Zc_(1.0),
     Pc_(readScalar(dict.subDict("equationOfState").lookup("Pc"))),
     omega_(readScalar(dict.subDict("equationOfState").lookup("omega")))
 {
-    Zc_ = Pc_*Vc_/(RR*Tc_);
+    n_ = 0.4986 + 1.1735*omega_ + 0.4754*sqr(omega_);
+    alpha0_ = 0.42747*sqr(this->R()*Tc_)/Pc_;
+    b_ = 0.08664*this->R()*Tc_/Pc_;
+    c_ = this->R()*Tc_/(Pc_ + alpha0_/(Vc_*(Vc_ + b_))) + b_ - Vc_;
 }
 
 
