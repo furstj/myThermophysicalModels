@@ -1,0 +1,189 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Copyright (C) 2011-2018 OpenFOAM Foundation
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+License
+    This file is part of OpenFOAM.
+
+    OpenFOAM is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    OpenFOAM is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+    for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
+
+\*---------------------------------------------------------------------------*/
+
+#include "gasProperties.H"
+#include "HashTable.H"
+#include "Switch.H"
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+namespace Foam
+{
+    defineTypeNameAndDebug(gasProperties, 0);
+    defineRunTimeSelectionTable(gasProperties, dictionary);
+}
+
+// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
+
+
+namespace Foam
+{
+
+gasProperties::gasProperties(const dictionary& dict)
+{}
+
+
+gasProperties::~gasProperties()
+{}
+
+
+// * * * * * * * * * * * * * * * * * Selectors * * * * * * * * * * * * * * * //
+
+
+autoPtr<gasProperties> gasProperties::New
+(
+    const dictionary& dict
+)
+{
+    if (debug)
+    {
+        InfoInFunction << "Constructing gasProperties" << endl;
+    }
+
+
+    const dictionary& thermoDict = dict.subDict("thermoType");
+    
+    const word transportName = thermoDict.lookup("transport");
+    const word thermoName = thermoDict.lookup("thermo");
+    const word EOSName = thermoDict.lookup("equationOfState");
+    const word specieName = thermoDict.lookup("specie");
+    const word energyName = thermoDict.lookup("energy");
+
+    const word gasPropertiesTypeName = "gasProperties<" + transportName + "<"
+        + thermoName + "<" + EOSName + "<" + specieName + ">>," + energyName + ">>";
+    
+    dictionaryConstructorTable::iterator cstrIter =
+        dictionaryConstructorTablePtr_->find(gasPropertiesTypeName);
+
+    if (cstrIter == dictionaryConstructorTablePtr_->end())
+    {
+        FatalErrorInFunction
+            << "Unknown gasProperties type "
+                << gasPropertiesTypeName << nl << nl
+                << "Valid gasProperties types are:" << nl
+                << dictionaryConstructorTablePtr_->sortedToc()
+                << exit(FatalError);
+    }
+    
+    return autoPtr<gasProperties>(cstrIter()(dict));
+}
+    
+
+// * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
+
+
+scalar gasProperties::W() const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::rho(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::psi(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::CpMCv(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::Cp(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::Ha(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::Hs(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::Hc() const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::S(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::mu(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::kappa(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+scalar gasProperties::alphah(scalar p, scalar T) const
+{
+    NotImplemented;
+    return 0;
+}
+
+
+void gasProperties::writeData(Ostream& os) const
+{
+}
+
+
+}
+
+
+// ************************************************************************* //
