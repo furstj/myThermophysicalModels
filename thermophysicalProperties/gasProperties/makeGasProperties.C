@@ -53,6 +53,54 @@ makeGasProperties(
     specie
 );
 
+makeGasProperties(
+    sutherlandTransport,
+    sensibleEnthalpy,
+    hConstThermo,
+    perfectGas,
+    specie
+);
+
+makeGasProperties(
+    sutherlandTransport,
+    sensibleEnthalpy,
+    janafThermo,
+    perfectGas,
+    specie
+);
+
+makeGasProperties(
+    sutherlandTransport,
+    sensibleEnthalpy,
+    hConstThermo,
+    PengRobinsonGas,
+    specie
+);
+
+makeGasProperties(
+    polynomialTransport,
+    sensibleEnthalpy,
+    hPolynomialThermo,
+    PengRobinsonGas,
+    specie
+);
+
+makeGasProperties(
+    polynomialTransport,
+    sensibleEnthalpy,
+    janafThermo,
+    PengRobinsonGas,
+    specie
+);
+
+makeGasProperties(
+    sutherlandTransport,
+    sensibleEnthalpy,
+    janafThermo,
+    PengRobinsonGas,
+    specie
+);
+
 }
 
 // ************************************************************************* //
