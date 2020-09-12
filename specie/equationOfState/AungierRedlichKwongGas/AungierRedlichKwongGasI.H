@@ -28,6 +28,10 @@ License
 
 // * * * * * * * * * * * * * Private Member Functions  * * * * * * * * * * * //
 
+#if (OPENFOAM >= 1912)
+#define small SMALL
+#endif
+
 template<class Specie>
 inline Foam::AungierRedlichKwongGas<Specie>::AungierRedlichKwongGas
 (

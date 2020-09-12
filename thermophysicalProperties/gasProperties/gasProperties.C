@@ -65,11 +65,11 @@ autoPtr<gasProperties> gasProperties::New
 
     const dictionary& thermoDict = dict.subDict("thermoType");
     
-    const word transportName = thermoDict.lookup("transport");
-    const word thermoName = thermoDict.lookup("thermo");
-    const word EOSName = thermoDict.lookup("equationOfState");
-    const word specieName = thermoDict.lookup("specie");
-    const word energyName = thermoDict.lookup("energy");
+    const word transportName(thermoDict.lookup("transport"));
+    const word thermoName(thermoDict.lookup("thermo"));
+    const word EOSName(thermoDict.lookup("equationOfState"));
+    const word specieName(thermoDict.lookup("specie"));
+    const word energyName(thermoDict.lookup("energy"));
 
     const word gasPropertiesTypeName = "gasProperties<" + transportName + "<"
         + thermoName + "<" + EOSName + "<" + specieName + ">>," + energyName + ">>";
