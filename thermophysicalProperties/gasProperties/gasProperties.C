@@ -74,10 +74,9 @@ autoPtr<gasProperties> gasProperties::New
     const word gasPropertiesTypeName = "gasProperties<" + transportName + "<"
         + thermoName + "<" + EOSName + "<" + specieName + ">>," + energyName + ">>";
     
-    dictionaryConstructorTable::iterator cstrIter =
-        dictionaryConstructorTablePtr_->find(gasPropertiesTypeName);
+    auto cstrIter = dictionaryConstructorTablePtr_->cfind(gasPropertiesTypeName);
 
-    if (cstrIter == dictionaryConstructorTablePtr_->end())
+    if (!cstrIter.found())
     {
         FatalErrorInFunction
             << "Unknown gasProperties type "
